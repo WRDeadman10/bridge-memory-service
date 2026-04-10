@@ -1,4 +1,5 @@
 import { logger } from '../utils/logger';
+import { withRetry } from '../core/RetryHelper';
 
 export class EmbeddingClient {
     private embedUrl: string;
@@ -14,13 +15,15 @@ export class EmbeddingClient {
     async embed(text: string): Promise<number[]> {
         const body = JSON.stringify({ model: this.model, prompt: text });
 
-        const response = await fetch(this.embedUrl, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: body,
-        });
+        const response = await withRetry(async () => {
+            return fetch(this.embedUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: body,
+            });
+        }, 2, 200);
 
         if (!response.ok) {
             throw new Error('Embedding request failed');
