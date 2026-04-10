@@ -1,6 +1,10 @@
 import { logger } from '../utils/logger';
 import { withRetry } from '../core/RetryHelper';
 
+interface EmbeddingResponse {
+    embedding: number[];
+}
+
 export class EmbeddingClient {
     private embedUrl: string;
     private model: string;
@@ -30,7 +34,7 @@ export class EmbeddingClient {
         }
 
         const data = await response.json();
-        const embedding = data.embedding;
+        const embedding = (data as EmbeddingResponse).embedding;
 
         if (!embedding || !Array.isArray(embedding)) {
             throw new Error('Unexpected embedding size');
