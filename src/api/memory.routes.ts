@@ -35,7 +35,7 @@ export function createMemoryRouter(repo: MemoryRepository): Router {
     try {
       logger.info('GET /memory/search request received');
 
-      const { query, limit = '10', type } = req.query;
+      const query = req.query.query as string | undefined; const limit = (req.query.limit as string) || '10'; const type = req.query.type as any;
 
       if (!query) {
         return res.status(400).send('Missing required field: query');
@@ -54,6 +54,8 @@ export function createMemoryRouter(repo: MemoryRepository): Router {
       res.status(500).send('Internal Server Error');
     }
   });
+
+  router.get('/health', (_req, res) => { res.status(200).json({ status: 'ok', service: 'bridge-memory-service' }); });
 
   return router;
 }
