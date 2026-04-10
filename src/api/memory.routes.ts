@@ -2,6 +2,7 @@ import { Router } from 'express';
 import { MemoryRepository } from '../storage/MemoryRepository';
 import { SaveMemoryRequest, SearchMemoryRequest, MemoryType } from '../core/types/MemoryTypes';
 import { logger } from '../utils/logger';
+import { metrics } from '../core/Metrics';
 
 export function createMemoryRouter(repo: MemoryRepository): Router {
   const router = Router();
@@ -25,6 +26,7 @@ export function createMemoryRouter(repo: MemoryRepository): Router {
 
       const savedEntry = await repo.save(saveRequest);
       res.status(201).json(savedEntry);
+      metrics.increment('saves');
     } catch (error) {
       logger.error('Error saving memory', error);
       res.status(500).send('Internal Server Error');
@@ -49,8 +51,18 @@ export function createMemoryRouter(repo: MemoryRepository): Router {
 
       const results = await repo.search(searchRequest.query, searchRequest.limit, searchRequest.type);
       res.status(200).json(results);
+      metrics.increment('searches');
     } catch (error) {
       logger.error('Error searching memory', error);
+      res.status(500).send('Internal Server Error');
+    }
+  });
+
+  router.get('/metrics', async (req, res) => {
+    try {
+      res.status(200).json(metrics.snapshot());
+    } catch (error) {
+      logger.error('Error retrieving metrics', error);
       res.status(500).send('Internal Server Error');
     }
   });
