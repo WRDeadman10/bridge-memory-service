@@ -38,6 +38,18 @@ export class MemoryRepository {
       updatedAt: new Date(updatedAt)
     };
 
+    // Compute embedding vector
+    const embVector = await this.embedding.embed(req.content);
+
+    // Check for near-duplicates
+    const dupCheck = await this.vector.search(embVector, 1);
+
+    if (dupCheck.length > 0 && dupCheck[0].score > 0.9) {
+      logger.warn('Near-duplicate memory detected skipping save');
+      return memoryEntry;
+    }
+
+    // Proceed with saving
     this.sqlite.getDb().prepare(`
       INSERT INTO memory_entries (
         id, type, content, summary, importance_score, recency_score, embedding_id, tags, created_at, updated_at
@@ -55,7 +67,6 @@ export class MemoryRepository {
       updatedAt
     );
 
-    const embVector = await this.embedding.embed(req.content);
     await this.vector.upsert(id, embVector, { content: req.content, type: String(req.type) });
 
     return memoryEntry;
