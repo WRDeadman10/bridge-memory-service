@@ -62,16 +62,20 @@ export class MemoryRepository {
   }
 
   async search(query: string, limit: number, type?: MemoryType): Promise<SearchResult[]> {
-    let sql = 'SELECT * FROM memory_entries';
-    const params: any[] = [];
+    const qVec = await this.embedding.embed(query);
+    const vResults = await this.vector.search(qVec, limit);
+
+    if (vResults.length === 0) return [];
+
+    const ids = vResults.map(r => r.id);
+    const placeholders = ids.map(() => '?').join(',');
+    let sql = 'SELECT * FROM memory_entries WHERE id IN (' + placeholders + ')';
+    const params: any[] = [...ids];
 
     if (type !== undefined) {
-      sql += ' WHERE type = ?';
+      sql += ' AND type = ?';
       params.push(type);
     }
-
-    sql += ' LIMIT ?';
-    params.push(limit);
 
     const rows = this.sqlite.getDb().prepare(sql).all(...params) as any[];
 
@@ -88,7 +92,7 @@ export class MemoryRepository {
         createdAt: new Date(row.created_at),
         updatedAt: new Date(row.updated_at)
       },
-      score: 1.0
-    }));
+      score: vResults.find(v => v.id === row.id)?.score ?? 0
+    })).sort((a, b) => b.score - a.score);
   }
 }
