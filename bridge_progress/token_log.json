@@ -1,0 +1,947 @@
+{
+  "sessions": [
+    {
+      "session_id": "b244fd0f-5013-4665-94f7-eb2b7c1fb8ea",
+      "timestamp": "2026-04-10T15:23:35",
+      "goal": "Build a logging system feature",
+      "repo_root": "H:\\Ai_Project\\memory\\bridge-memory-service",
+      "supervisor_command": "manual",
+      "supervisor": {
+        "plan_in": 0,
+        "plan_out": 0,
+        "review_in": 0,
+        "review_out": 0,
+        "subplan_in": 0,
+        "subplan_out": 0,
+        "total_in": 0,
+        "total_out": 0,
+        "total": 0
+      },
+      "session": {
+        "tokens": 7764,
+        "is_estimate": true,
+        "total_ai_tokens": 7764
+      },
+      "aider": {
+        "tasks_executed": 8,
+        "tasks_skipped": 0,
+        "reworks": 0,
+        "subplans_generated": 0,
+        "estimated_tokens": 6997,
+        "per_task": [
+          {
+            "task_id": 1,
+            "estimated_tokens": 826,
+            "performer": "ollama"
+          },
+          {
+            "task_id": 2,
+            "estimated_tokens": 1241,
+            "performer": "ollama"
+          },
+          {
+            "task_id": 3,
+            "estimated_tokens": 804,
+            "performer": "ollama"
+          },
+          {
+            "task_id": 4,
+            "estimated_tokens": 1217,
+            "performer": "ollama"
+          },
+          {
+            "task_id": 5,
+            "estimated_tokens": 354,
+            "performer": "ollama"
+          },
+          {
+            "task_id": 6,
+            "estimated_tokens": 1168,
+            "performer": "ollama"
+          },
+          {
+            "task_id": 7,
+            "estimated_tokens": 613,
+            "performer": "ollama"
+          },
+          {
+            "task_id": 8,
+            "estimated_tokens": 774,
+            "performer": "ollama"
+          }
+        ]
+      },
+      "productivity": {
+        "is_productive": true,
+        "waste_reason": null
+      },
+      "savings": {
+        "estimated_direct_tokens": 47764,
+        "actual_supervisor_tokens": 0,
+        "total_ai_tokens": 7764,
+        "tokens_saved": 40000,
+        "savings_percent": 83.7,
+        "note": "Without bridge: plan (0 tokens) + 8 tasks x 5000 direct-coding tokens = 47764; with bridge: supervisor 7764 tokens (cloud) + Aider ~6997 tokens (local/free); cloud AI saved: 40000"
+      },
+      "cost": {
+        "bridge_cost_opus": 0.0,
+        "bridge_cost_sonnet": 0.0,
+        "direct_cost_opus": 1.8628,
+        "direct_cost_sonnet": 0.3726,
+        "ollama_cost": 0.0,
+        "ollama_tokens": 6997,
+        "savings_dollar_opus": 0.0,
+        "savings_dollar_sonnet": 0.0
+      },
+      "elapsed_seconds": 781.9
+    },
+    {
+      "session_id": "a2d8ef72-52d1-4d02-9490-b9780438f645",
+      "timestamp": "2026-04-10T15:01:30",
+      "goal": "Build a logging system feature",
+      "repo_root": "H:\\Ai_Project\\memory\\bridge-memory-service",
+      "supervisor_command": "manual",
+      "supervisor": {
+        "plan_in": 0,
+        "plan_out": 0,
+        "review_in": 0,
+        "review_out": 0,
+        "subplan_in": 0,
+        "subplan_out": 0,
+        "total_in": 0,
+        "total_out": 0,
+        "total": 0
+      },
+      "session": {
+        "tokens": 7420,
+        "is_estimate": true,
+        "total_ai_tokens": 7420
+      },
+      "aider": {
+        "tasks_executed": 6,
+        "tasks_skipped": 0,
+        "reworks": 0,
+        "subplans_generated": 0,
+        "estimated_tokens": 16286,
+        "per_task": [
+          {
+            "task_id": 1,
+            "estimated_tokens": 901,
+            "performer": "ollama"
+          },
+          {
+            "task_id": 2,
+            "estimated_tokens": 880,
+            "performer": "ollama"
+          },
+          {
+            "task_id": 3,
+            "estimated_tokens": 1563,
+            "performer": "ollama"
+          },
+          {
+            "task_id": 4,
+            "estimated_tokens": 1475,
+            "performer": "ollama"
+          },
+          {
+            "task_id": 5,
+            "estimated_tokens": 1179,
+            "performer": "ollama"
+          },
+          {
+            "task_id": 6,
+            "estimated_tokens": 896,
+            "performer": "ollama"
+          },
+          {
+            "task_id": 7,
+            "estimated_tokens": 3240,
+            "performer": "ollama"
+          },
+          {
+            "task_id": 7,
+            "estimated_tokens": 0,
+            "performer": "deterministic"
+          },
+          {
+            "task_id": 7,
+            "estimated_tokens": 3181,
+            "performer": "ollama"
+          },
+          {
+            "task_id": 7,
+            "estimated_tokens": 2971,
+            "performer": "ollama"
+          }
+        ]
+      },
+      "productivity": {
+        "is_productive": true,
+        "waste_reason": null
+      },
+      "savings": {
+        "estimated_direct_tokens": 37420,
+        "actual_supervisor_tokens": 0,
+        "total_ai_tokens": 7420,
+        "tokens_saved": 30000,
+        "savings_percent": 80.2,
+        "note": "Without bridge: plan (0 tokens) + 6 tasks x 5000 direct-coding tokens = 37420; with bridge: supervisor 7420 tokens (cloud) + Aider ~16286 tokens (local/free); cloud AI saved: 30000"
+      },
+      "cost": {
+        "bridge_cost_opus": 0.0,
+        "bridge_cost_sonnet": 0.0,
+        "direct_cost_opus": 1.4594,
+        "direct_cost_sonnet": 0.2919,
+        "ollama_cost": 0.0,
+        "ollama_tokens": 16286,
+        "savings_dollar_opus": 0.0,
+        "savings_dollar_sonnet": 0.0
+      },
+      "elapsed_seconds": 1233.7
+    },
+    {
+      "session_id": "08018b0a-6b85-4c02-bd8a-7bfa3eb02005",
+      "timestamp": "2026-04-10T14:22:55",
+      "goal": "Build a logging system feature",
+      "repo_root": "H:\\Ai_Project\\memory\\bridge-memory-service",
+      "supervisor_command": "manual",
+      "supervisor": {
+        "plan_in": 0,
+        "plan_out": 0,
+        "review_in": 0,
+        "review_out": 0,
+        "subplan_in": 0,
+        "subplan_out": 0,
+        "total_in": 0,
+        "total_out": 0,
+        "total": 0
+      },
+      "session": {
+        "tokens": 7537,
+        "is_estimate": true,
+        "total_ai_tokens": 7537
+      },
+      "aider": {
+        "tasks_executed": 7,
+        "tasks_skipped": 1,
+        "reworks": 0,
+        "subplans_generated": 0,
+        "estimated_tokens": 8871,
+        "per_task": [
+          {
+            "task_id": 2,
+            "estimated_tokens": 875,
+            "performer": "ollama"
+          },
+          {
+            "task_id": 3,
+            "estimated_tokens": 646,
+            "performer": "ollama"
+          },
+          {
+            "task_id": 4,
+            "estimated_tokens": 865,
+            "performer": "ollama"
+          },
+          {
+            "task_id": 5,
+            "estimated_tokens": 650,
+            "performer": "ollama"
+          },
+          {
+            "task_id": 5,
+            "estimated_tokens": 0,
+            "performer": "deterministic"
+          },
+          {
+            "task_id": 5,
+            "estimated_tokens": 532,
+            "performer": "ollama"
+          },
+          {
+            "task_id": 6,
+            "estimated_tokens": 1136,
+            "performer": "ollama"
+          },
+          {
+            "task_id": 7,
+            "estimated_tokens": 924,
+            "performer": "ollama"
+          },
+          {
+            "task_id": 8,
+            "estimated_tokens": 1676,
+            "performer": "ollama"
+          },
+          {
+            "task_id": 8,
+            "estimated_tokens": 1567,
+            "performer": "ollama"
+          }
+        ]
+      },
+      "productivity": {
+        "is_productive": true,
+        "waste_reason": null
+      },
+      "savings": {
+        "estimated_direct_tokens": 42537,
+        "actual_supervisor_tokens": 0,
+        "total_ai_tokens": 7537,
+        "tokens_saved": 35000,
+        "savings_percent": 82.3,
+        "note": "Without bridge: plan (0 tokens) + 7 tasks x 5000 direct-coding tokens = 42537; with bridge: supervisor 7537 tokens (cloud) + Aider ~8871 tokens (local/free); cloud AI saved: 35000"
+      },
+      "cost": {
+        "bridge_cost_opus": 0.0,
+        "bridge_cost_sonnet": 0.0,
+        "direct_cost_opus": 1.6589,
+        "direct_cost_sonnet": 0.3318,
+        "ollama_cost": 0.0,
+        "ollama_tokens": 8871,
+        "savings_dollar_opus": 0.0,
+        "savings_dollar_sonnet": 0.0
+      },
+      "elapsed_seconds": 1552.8
+    },
+    {
+      "session_id": "b4ed4c93-3010-4242-8c0a-735c8e9b8a1d",
+      "timestamp": "2026-04-10T13:55:43",
+      "goal": "Build a logging system feature",
+      "repo_root": "H:\\Ai_Project\\memory\\bridge-memory-service",
+      "supervisor_command": "claude",
+      "supervisor": {
+        "plan_in": 0,
+        "plan_out": 0,
+        "review_in": 0,
+        "review_out": 0,
+        "subplan_in": 0,
+        "subplan_out": 0,
+        "total_in": 0,
+        "total_out": 0,
+        "total": 0
+      },
+      "session": {
+        "tokens": 7057,
+        "is_estimate": true,
+        "total_ai_tokens": 7057
+      },
+      "aider": {
+        "tasks_executed": 1,
+        "tasks_skipped": 0,
+        "reworks": 0,
+        "subplans_generated": 0,
+        "estimated_tokens": 0,
+        "per_task": []
+      },
+      "productivity": {
+        "is_productive": true,
+        "waste_reason": null
+      },
+      "savings": {
+        "estimated_direct_tokens": 12057,
+        "actual_supervisor_tokens": 0,
+        "total_ai_tokens": 7057,
+        "tokens_saved": 5000,
+        "savings_percent": 41.5,
+        "note": "Without bridge: plan (0 tokens) + 1 tasks x 5000 direct-coding tokens = 12057; with bridge: supervisor 7057 tokens (cloud) + Aider ~0 tokens (local/free); cloud AI saved: 5000"
+      },
+      "cost": {
+        "bridge_cost_opus": 0.0,
+        "bridge_cost_sonnet": 0.0,
+        "direct_cost_opus": 0.4702,
+        "direct_cost_sonnet": 0.094,
+        "ollama_cost": 0.0,
+        "ollama_tokens": 0,
+        "savings_dollar_opus": 0.0,
+        "savings_dollar_sonnet": 0.0
+      },
+      "elapsed_seconds": 4.3
+    },
+    {
+      "session_id": "1ee69803-55a8-43ad-871d-5c5ed1f7a6bb",
+      "timestamp": "2026-04-10T11:12:35",
+      "goal": "Build a logging system feature",
+      "repo_root": "H:\\Ai_Project\\memory\\bridge-memory-service",
+      "supervisor_command": "manual",
+      "supervisor": {
+        "plan_in": 0,
+        "plan_out": 0,
+        "review_in": 0,
+        "review_out": 0,
+        "subplan_in": 0,
+        "subplan_out": 0,
+        "total_in": 0,
+        "total_out": 0,
+        "total": 0
+      },
+      "session": {
+        "tokens": 20000,
+        "is_estimate": false,
+        "total_ai_tokens": 20000
+      },
+      "aider": {
+        "tasks_executed": 8,
+        "tasks_skipped": 0,
+        "reworks": 0,
+        "subplans_generated": 0,
+        "estimated_tokens": 11002,
+        "per_task": [
+          {
+            "task_id": 1,
+            "estimated_tokens": 0,
+            "performer": "deterministic"
+          },
+          {
+            "task_id": 1,
+            "estimated_tokens": 743,
+            "performer": "ollama"
+          },
+          {
+            "task_id": 1,
+            "estimated_tokens": 1090,
+            "performer": "ollama"
+          },
+          {
+            "task_id": 2,
+            "estimated_tokens": 420,
+            "performer": "ollama"
+          },
+          {
+            "task_id": 3,
+            "estimated_tokens": 848,
+            "performer": "ollama"
+          },
+          {
+            "task_id": 4,
+            "estimated_tokens": 0,
+            "performer": "deterministic"
+          },
+          {
+            "task_id": 4,
+            "estimated_tokens": 969,
+            "performer": "ollama"
+          },
+          {
+            "task_id": 4,
+            "estimated_tokens": 1360,
+            "performer": "ollama"
+          },
+          {
+            "task_id": 5,
+            "estimated_tokens": 1424,
+            "performer": "ollama"
+          },
+          {
+            "task_id": 6,
+            "estimated_tokens": 677,
+            "performer": "ollama"
+          },
+          {
+            "task_id": 7,
+            "estimated_tokens": 877,
+            "performer": "ollama"
+          },
+          {
+            "task_id": 7,
+            "estimated_tokens": 836,
+            "performer": "ollama"
+          },
+          {
+            "task_id": 8,
+            "estimated_tokens": 922,
+            "performer": "ollama"
+          },
+          {
+            "task_id": 8,
+            "estimated_tokens": 836,
+            "performer": "ollama"
+          }
+        ]
+      },
+      "productivity": {
+        "is_productive": true,
+        "waste_reason": null
+      },
+      "savings": {
+        "estimated_direct_tokens": 60000,
+        "actual_supervisor_tokens": 0,
+        "total_ai_tokens": 20000,
+        "tokens_saved": 40000,
+        "savings_percent": 66.7,
+        "note": "Without bridge: plan (0 tokens) + 8 tasks x 5000 direct-coding tokens = 60000; with bridge: supervisor 20000 tokens (cloud) + Aider ~11002 tokens (local/free); cloud AI saved: 40000"
+      },
+      "cost": {
+        "bridge_cost_opus": 0.0,
+        "bridge_cost_sonnet": 0.0,
+        "direct_cost_opus": 2.34,
+        "direct_cost_sonnet": 0.468,
+        "ollama_cost": 0.0,
+        "ollama_tokens": 11002,
+        "savings_dollar_opus": 0.0,
+        "savings_dollar_sonnet": 0.0
+      },
+      "elapsed_seconds": 1132.6
+    },
+    {
+      "session_id": "1ea56cd4-ce80-436b-8625-1aff565741b4",
+      "timestamp": "2026-04-10T10:52:26",
+      "goal": "Build a logging system feature",
+      "repo_root": "H:\\Ai_Project\\memory\\bridge-memory-service",
+      "supervisor_command": "manual",
+      "supervisor": {
+        "plan_in": 0,
+        "plan_out": 0,
+        "review_in": 0,
+        "review_out": 0,
+        "subplan_in": 0,
+        "subplan_out": 0,
+        "total_in": 0,
+        "total_out": 0,
+        "total": 0
+      },
+      "session": {
+        "tokens": 20000,
+        "is_estimate": false,
+        "total_ai_tokens": 20000
+      },
+      "aider": {
+        "tasks_executed": 0,
+        "tasks_skipped": 0,
+        "reworks": 0,
+        "subplans_generated": 0,
+        "estimated_tokens": 743,
+        "per_task": [
+          {
+            "task_id": 1,
+            "estimated_tokens": 0,
+            "performer": "deterministic"
+          },
+          {
+            "task_id": 1,
+            "estimated_tokens": 743,
+            "performer": "ollama"
+          }
+        ]
+      },
+      "productivity": {
+        "is_productive": false,
+        "waste_reason": "zero_progress_other"
+      },
+      "savings": {
+        "estimated_direct_tokens": 20000,
+        "actual_supervisor_tokens": 0,
+        "total_ai_tokens": 20000,
+        "tokens_saved": 0,
+        "savings_percent": 0.0,
+        "note": "Without bridge: plan (0 tokens) + 0 tasks x 5000 direct-coding tokens = 20000; with bridge: supervisor 20000 tokens (cloud) + Aider ~743 tokens (local/free); cloud AI saved: 0; session completed no tasks and should be treated as overhead, not productive savings"
+      },
+      "cost": {
+        "bridge_cost_opus": 0.0,
+        "bridge_cost_sonnet": 0.0,
+        "direct_cost_opus": 0.78,
+        "direct_cost_sonnet": 0.156,
+        "ollama_cost": 0.0,
+        "ollama_tokens": 743,
+        "savings_dollar_opus": 0.0,
+        "savings_dollar_sonnet": 0.0
+      },
+      "elapsed_seconds": 81.1
+    },
+    {
+      "session_id": "08fecdb3-93f5-49d4-bdcb-6ebf40a15ab5",
+      "timestamp": "2026-04-10T10:50:42",
+      "goal": "Build a logging system feature",
+      "repo_root": "H:\\Ai_Project\\memory\\bridge-memory-service",
+      "supervisor_command": "claude",
+      "supervisor": {
+        "plan_in": 0,
+        "plan_out": 0,
+        "review_in": 0,
+        "review_out": 0,
+        "subplan_in": 0,
+        "subplan_out": 0,
+        "total_in": 0,
+        "total_out": 0,
+        "total": 0
+      },
+      "session": {
+        "tokens": 6807,
+        "is_estimate": true,
+        "total_ai_tokens": 6807
+      },
+      "aider": {
+        "tasks_executed": 8,
+        "tasks_skipped": 0,
+        "reworks": 0,
+        "subplans_generated": 0,
+        "estimated_tokens": 0,
+        "per_task": []
+      },
+      "productivity": {
+        "is_productive": true,
+        "waste_reason": null
+      },
+      "savings": {
+        "estimated_direct_tokens": 46807,
+        "actual_supervisor_tokens": 0,
+        "total_ai_tokens": 6807,
+        "tokens_saved": 40000,
+        "savings_percent": 85.5,
+        "note": "Without bridge: plan (0 tokens) + 8 tasks x 5000 direct-coding tokens = 46807; with bridge: supervisor 6807 tokens (cloud) + Aider ~0 tokens (local/free); cloud AI saved: 40000"
+      },
+      "cost": {
+        "bridge_cost_opus": 0.0,
+        "bridge_cost_sonnet": 0.0,
+        "direct_cost_opus": 1.8255,
+        "direct_cost_sonnet": 0.3651,
+        "ollama_cost": 0.0,
+        "ollama_tokens": 0,
+        "savings_dollar_opus": 0.0,
+        "savings_dollar_sonnet": 0.0
+      },
+      "elapsed_seconds": 19.4
+    },
+    {
+      "session_id": "53420c63-3771-4146-b0e2-7b302d643a52",
+      "timestamp": "2026-04-09T19:19:15",
+      "goal": "Build a logging system feature",
+      "repo_root": "H:\\Ai_Project\\memory\\bridge-memory-service",
+      "supervisor_command": "manual",
+      "supervisor": {
+        "plan_in": 0,
+        "plan_out": 0,
+        "review_in": 0,
+        "review_out": 0,
+        "subplan_in": 0,
+        "subplan_out": 0,
+        "total_in": 0,
+        "total_out": 0,
+        "total": 0
+      },
+      "session": {
+        "tokens": 7069,
+        "is_estimate": true,
+        "total_ai_tokens": 7069
+      },
+      "aider": {
+        "tasks_executed": 9,
+        "tasks_skipped": 0,
+        "reworks": 0,
+        "subplans_generated": 0,
+        "estimated_tokens": 14569,
+        "per_task": [
+          {
+            "task_id": 1,
+            "estimated_tokens": 581,
+            "performer": "ollama"
+          },
+          {
+            "task_id": 2,
+            "estimated_tokens": 401,
+            "performer": "ollama"
+          },
+          {
+            "task_id": 2,
+            "estimated_tokens": 389,
+            "performer": "ollama"
+          },
+          {
+            "task_id": 3,
+            "estimated_tokens": 481,
+            "performer": "ollama"
+          },
+          {
+            "task_id": 4,
+            "estimated_tokens": 840,
+            "performer": "ollama"
+          },
+          {
+            "task_id": 4,
+            "estimated_tokens": 762,
+            "performer": "ollama"
+          },
+          {
+            "task_id": 5,
+            "estimated_tokens": 1217,
+            "performer": "ollama"
+          },
+          {
+            "task_id": 5,
+            "estimated_tokens": 0,
+            "performer": "deterministic"
+          },
+          {
+            "task_id": 5,
+            "estimated_tokens": 1079,
+            "performer": "ollama"
+          },
+          {
+            "task_id": 6,
+            "estimated_tokens": 1698,
+            "performer": "ollama"
+          },
+          {
+            "task_id": 6,
+            "estimated_tokens": 0,
+            "performer": "deterministic"
+          },
+          {
+            "task_id": 6,
+            "estimated_tokens": 1480,
+            "performer": "ollama"
+          },
+          {
+            "task_id": 7,
+            "estimated_tokens": 1147,
+            "performer": "ollama"
+          },
+          {
+            "task_id": 7,
+            "estimated_tokens": 1093,
+            "performer": "ollama"
+          },
+          {
+            "task_id": 8,
+            "estimated_tokens": 730,
+            "performer": "ollama"
+          },
+          {
+            "task_id": 8,
+            "estimated_tokens": 706,
+            "performer": "ollama"
+          },
+          {
+            "task_id": 9,
+            "estimated_tokens": 1026,
+            "performer": "ollama"
+          },
+          {
+            "task_id": 9,
+            "estimated_tokens": 939,
+            "performer": "ollama"
+          }
+        ]
+      },
+      "productivity": {
+        "is_productive": true,
+        "waste_reason": null
+      },
+      "savings": {
+        "estimated_direct_tokens": 52069,
+        "actual_supervisor_tokens": 0,
+        "total_ai_tokens": 7069,
+        "tokens_saved": 45000,
+        "savings_percent": 86.4,
+        "note": "Without bridge: plan (0 tokens) + 9 tasks x 5000 direct-coding tokens = 52069; with bridge: supervisor 7069 tokens (cloud) + Aider ~14569 tokens (local/free); cloud AI saved: 45000"
+      },
+      "cost": {
+        "bridge_cost_opus": 0.0,
+        "bridge_cost_sonnet": 0.0,
+        "direct_cost_opus": 2.0307,
+        "direct_cost_sonnet": 0.4061,
+        "ollama_cost": 0.0,
+        "ollama_tokens": 14569,
+        "savings_dollar_opus": 0.0,
+        "savings_dollar_sonnet": 0.0
+      },
+      "elapsed_seconds": 1635.7
+    },
+    {
+      "session_id": "698de791-cee8-425e-befc-6f06b6c895c0",
+      "timestamp": "2026-04-09T19:07:31",
+      "goal": "Build a logging system feature",
+      "repo_root": "H:\\Ai_Project\\memory\\bridge-memory-service",
+      "supervisor_command": "manual",
+      "supervisor": {
+        "plan_in": 0,
+        "plan_out": 0,
+        "review_in": 0,
+        "review_out": 0,
+        "subplan_in": 0,
+        "subplan_out": 0,
+        "total_in": 0,
+        "total_out": 0,
+        "total": 0
+      },
+      "session": {
+        "tokens": 7180,
+        "is_estimate": true,
+        "total_ai_tokens": 7180
+      },
+      "aider": {
+        "tasks_executed": 0,
+        "tasks_skipped": 5,
+        "reworks": 0,
+        "subplans_generated": 0,
+        "estimated_tokens": 1646,
+        "per_task": [
+          {
+            "task_id": 6,
+            "estimated_tokens": 1646,
+            "performer": "ollama"
+          }
+        ]
+      },
+      "productivity": {
+        "is_productive": false,
+        "waste_reason": "zero_progress_other"
+      },
+      "savings": {
+        "estimated_direct_tokens": 7180,
+        "actual_supervisor_tokens": 0,
+        "total_ai_tokens": 7180,
+        "tokens_saved": 0,
+        "savings_percent": 0.0,
+        "note": "Without bridge: plan (0 tokens) + 0 tasks x 5000 direct-coding tokens = 7180; with bridge: supervisor 7180 tokens (cloud) + Aider ~1646 tokens (local/free); cloud AI saved: 0; session completed no tasks and should be treated as overhead, not productive savings"
+      },
+      "cost": {
+        "bridge_cost_opus": 0.0,
+        "bridge_cost_sonnet": 0.0,
+        "direct_cost_opus": 0.28,
+        "direct_cost_sonnet": 0.056,
+        "ollama_cost": 0.0,
+        "ollama_tokens": 1646,
+        "savings_dollar_opus": 0.0,
+        "savings_dollar_sonnet": 0.0
+      },
+      "elapsed_seconds": 70.3
+    },
+    {
+      "session_id": "bfeadd10-ec70-4e88-8e5f-03aa44cf05c8",
+      "timestamp": "2026-04-09T18:51:13",
+      "goal": "Build a logging system feature",
+      "repo_root": "H:\\Ai_Project\\memory\\bridge-memory-service",
+      "supervisor_command": "claude",
+      "supervisor": {
+        "plan_in": 0,
+        "plan_out": 0,
+        "review_in": 0,
+        "review_out": 0,
+        "subplan_in": 0,
+        "subplan_out": 0,
+        "total_in": 0,
+        "total_out": 0,
+        "total": 0
+      },
+      "session": {
+        "tokens": 7032,
+        "is_estimate": true,
+        "total_ai_tokens": 7032
+      },
+      "aider": {
+        "tasks_executed": 9,
+        "tasks_skipped": 0,
+        "reworks": 0,
+        "subplans_generated": 0,
+        "estimated_tokens": 0,
+        "per_task": []
+      },
+      "productivity": {
+        "is_productive": true,
+        "waste_reason": null
+      },
+      "savings": {
+        "estimated_direct_tokens": 52032,
+        "actual_supervisor_tokens": 0,
+        "total_ai_tokens": 7032,
+        "tokens_saved": 45000,
+        "savings_percent": 86.5,
+        "note": "Without bridge: plan (0 tokens) + 9 tasks x 5000 direct-coding tokens = 52032; with bridge: supervisor 7032 tokens (cloud) + Aider ~0 tokens (local/free); cloud AI saved: 45000"
+      },
+      "cost": {
+        "bridge_cost_opus": 0.0,
+        "bridge_cost_sonnet": 0.0,
+        "direct_cost_opus": 2.0292,
+        "direct_cost_sonnet": 0.4058,
+        "ollama_cost": 0.0,
+        "ollama_tokens": 0,
+        "savings_dollar_opus": 0.0,
+        "savings_dollar_sonnet": 0.0
+      },
+      "elapsed_seconds": 14.4
+    },
+    {
+      "session_id": "add3fcbe-2919-4fd8-bbe1-d56bc08c89f9",
+      "timestamp": "2026-04-09T18:50:41",
+      "goal": "Build a logging system feature",
+      "repo_root": "H:\\Ai_Project\\memory\\bridge-memory-service",
+      "supervisor_command": "claude",
+      "supervisor": {
+        "plan_in": 0,
+        "plan_out": 0,
+        "review_in": 0,
+        "review_out": 0,
+        "subplan_in": 0,
+        "subplan_out": 0,
+        "total_in": 0,
+        "total_out": 0,
+        "total": 0
+      },
+      "session": {
+        "tokens": 6275,
+        "is_estimate": true,
+        "total_ai_tokens": 6275
+      },
+      "aider": {
+        "tasks_executed": 0,
+        "tasks_skipped": 0,
+        "reworks": 0,
+        "subplans_generated": 0,
+        "estimated_tokens": 0,
+        "per_task": []
+      },
+      "productivity": {
+        "is_productive": false,
+        "waste_reason": "zero_progress_other"
+      },
+      "savings": {
+        "estimated_direct_tokens": 6275,
+        "actual_supervisor_tokens": 0,
+        "total_ai_tokens": 6275,
+        "tokens_saved": 0,
+        "savings_percent": 0.0,
+        "note": "Without bridge: plan (0 tokens) + 0 tasks x 5000 direct-coding tokens = 6275; with bridge: supervisor 6275 tokens (cloud) + Aider ~0 tokens (local/free); cloud AI saved: 0; session completed no tasks and should be treated as overhead, not productive savings"
+      },
+      "cost": {
+        "bridge_cost_opus": 0.0,
+        "bridge_cost_sonnet": 0.0,
+        "direct_cost_opus": 0.2447,
+        "direct_cost_sonnet": 0.0489,
+        "ollama_cost": 0.0,
+        "ollama_tokens": 0,
+        "savings_dollar_opus": 0.0,
+        "savings_dollar_sonnet": 0.0
+      },
+      "elapsed_seconds": 2.8
+    }
+  ],
+  "totals": {
+    "sessions_count": 11,
+    "tasks_executed_total": 56,
+    "supervisor_tokens_total": 0,
+    "session_tokens_total": 104141,
+    "total_ai_tokens_total": 104141,
+    "aider_tokens_total": 60114,
+    "tokens_saved_total": 280000,
+    "savings_percent_weighted": 72.9,
+    "savings_percent_successful_avg": 76.6,
+    "savings_percent_avg": 76.6,
+    "wasted_tokens_total": 33455,
+    "wasted_sessions_count": 3,
+    "waste_reason_counts": {
+      "zero_progress_other": 3
+    },
+    "cost_total": {
+      "bridge_opus": 0.0,
+      "bridge_sonnet": 0.0,
+      "direct_opus": 14.9814,
+      "direct_sonnet": 2.9962,
+      "ollama": 0.0,
+      "savings_opus": 14.9814,
+      "savings_sonnet": 2.9962
+    },
+    "last_updated": "2026-04-10T15:23:35"
+  }
+}

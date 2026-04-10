@@ -1,0 +1,65 @@
+{
+  "status": "success",
+  "tasks": 8,
+  "executed": 8,
+  "skipped": 0,
+  "elapsed_seconds": 781.9,
+  "tokens": {
+    "plan_in": 0,
+    "plan_out": 0,
+    "review_in": 0,
+    "review_out": 0,
+    "subplan_in": 0,
+    "subplan_out": 0,
+    "total_in": 0,
+    "total_out": 0,
+    "total": 0,
+    "reworks": 0,
+    "subplans_generated": 0,
+    "session_tokens": 7764,
+    "session_tokens_is_estimate": true,
+    "aider_total": 6997,
+    "aider_per_task": [
+      {
+        "task_id": 1,
+        "estimated_tokens": 826,
+        "performer": "ollama"
+      },
+      {
+        "task_id": 2,
+        "estimated_tokens": 1241,
+        "performer": "ollama"
+      },
+      {
+        "task_id": 3,
+        "estimated_tokens": 804,
+        "performer": "ollama"
+      },
+      {
+        "task_id": 4,
+        "estimated_tokens": 1217,
+        "performer": "ollama"
+      },
+      {
+        "task_id": 5,
+        "estimated_tokens": 354,
+        "performer": "ollama"
+      },
+      {
+        "task_id": 6,
+        "estimated_tokens": 1168,
+        "performer": "ollama"
+      },
+      {
+        "task_id": 7,
+        "estimated_tokens": 613,
+        "performer": "ollama"
+      },
+      {
+        "task_id": 8,
+        "estimated_tokens": 774,
+        "performer": "ollama"
+      }
+    ]
+  }
+}

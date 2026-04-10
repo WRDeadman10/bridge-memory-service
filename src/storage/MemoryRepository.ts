@@ -32,7 +32,7 @@ export class MemoryRepository {
       summary: req.summary,
       importanceScore,
       recencyScore,
-      embeddingId: null,
+      embeddingId: "",
       tags: req.tags,
       createdAt: new Date(createdAt),
       updatedAt: new Date(updatedAt)

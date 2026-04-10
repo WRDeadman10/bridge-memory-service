@@ -1,0 +1,125 @@
+{
+  "status": "success",
+  "planned_tasks": 8,
+  "completed_task_ids": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8
+  ],
+  "completed_tasks": 8,
+  "resumed_completed_task_ids": [],
+  "skipped_tasks": 0,
+  "failed_task_id": null,
+  "diffs_recorded": 8,
+  "tasks": [
+    {
+      "id": 1,
+      "type": "create",
+      "files": [
+        "src/core/IngestionQueue.ts"
+      ],
+      "must_exist": [
+        "src/core/IngestionQueue.ts"
+      ],
+      "must_not_exist": [],
+      "completed": true,
+      "commit_sha": "7bafff5"
+    },
+    {
+      "id": 2,
+      "type": "modify",
+      "files": [
+        "src/core/IngestionPipeline.ts"
+      ],
+      "must_exist": [
+        "src/core/IngestionPipeline.ts"
+      ],
+      "must_not_exist": [],
+      "completed": true,
+      "commit_sha": "bbc5c52"
+    },
+    {
+      "id": 3,
+      "type": "create",
+      "files": [
+        "src/core/SearchCache.ts"
+      ],
+      "must_exist": [
+        "src/core/SearchCache.ts"
+      ],
+      "must_not_exist": [],
+      "completed": true,
+      "commit_sha": "52d3e2f"
+    },
+    {
+      "id": 4,
+      "type": "modify",
+      "files": [
+        "src/core/MemoryMiddleware.ts"
+      ],
+      "must_exist": [
+        "src/core/MemoryMiddleware.ts"
+      ],
+      "must_not_exist": [],
+      "completed": true,
+      "commit_sha": "cc93b47"
+    },
+    {
+      "id": 5,
+      "type": "create",
+      "files": [
+        "src/core/Metrics.ts"
+      ],
+      "must_exist": [
+        "src/core/Metrics.ts"
+      ],
+      "must_not_exist": [],
+      "completed": true,
+      "commit_sha": "c7246ef"
+    },
+    {
+      "id": 6,
+      "type": "modify",
+      "files": [
+        "src/api/memory.routes.ts"
+      ],
+      "must_exist": [
+        "src/api/memory.routes.ts"
+      ],
+      "must_not_exist": [],
+      "completed": true,
+      "commit_sha": "e7a25c5"
+    },
+    {
+      "id": 7,
+      "type": "create",
+      "files": [
+        "src/core/RetryHelper.ts"
+      ],
+      "must_exist": [
+        "src/core/RetryHelper.ts"
+      ],
+      "must_not_exist": [],
+      "completed": true,
+      "commit_sha": "d634702"
+    },
+    {
+      "id": 8,
+      "type": "modify",
+      "files": [
+        "src/embedding/EmbeddingClient.ts"
+      ],
+      "must_exist": [
+        "src/embedding/EmbeddingClient.ts"
+      ],
+      "must_not_exist": [],
+      "completed": true,
+      "commit_sha": "757f24c"
+    }
+  ]
+}

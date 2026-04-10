@@ -3,3 +3,7 @@ dist/
 data/
 .env
 *.js.map
+.aider.tags.cache.v4/*
+bridge_progress/manual_supervisor/*
+.aider.chat.history.md
+.aider.input.history
