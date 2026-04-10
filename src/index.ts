@@ -3,6 +3,7 @@ import { config } from './config/config';
 import { SqliteClient } from './storage/relational/SqliteClient';
 import { VectorClient } from './storage/vector/VectorClient';
 import { MemoryRepository } from './storage/MemoryRepository';
+import { EmbeddingClient } from './embedding/EmbeddingClient';
 import { createMemoryRouter } from './api/memory.routes';
 import { logger } from './utils/logger';
 
@@ -13,7 +14,8 @@ async function main() {
   const vector = new VectorClient(config.QDRANT_URL, config.QDRANT_COLLECTION, config.VECTOR_SIZE);
   await vector.ensureCollection();
 
-  const repo = new MemoryRepository(sqlite, vector);
+  const embedding = new EmbeddingClient(config.EMBED_URL, config.EMBED_MODEL, config.VECTOR_SIZE);
+  const repo = new MemoryRepository(sqlite, vector, embedding);
 
   const app = express();
   app.use(express.json());
