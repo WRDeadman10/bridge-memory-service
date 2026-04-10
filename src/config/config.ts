@@ -8,7 +8,9 @@ const configSchema = z.object({
   SQLITE_PATH: z.string().default('./data/memory.db'),
   QDRANT_URL: z.string().default('http://localhost:6333'),
   QDRANT_COLLECTION: z.string().default('memories'),
-  VECTOR_SIZE: z.coerce.number().default(1536)
+  VECTOR_SIZE: z.coerce.number().default(1536),
+  EMBED_URL: z.string().default('http://localhost:11434/api/embeddings'),
+  EMBED_MODEL: z.string().default('nomic-embed-text')
 });
 
 const config = configSchema.parse(process.env);
