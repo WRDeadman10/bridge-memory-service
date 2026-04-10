@@ -6,6 +6,10 @@ import { MemoryRepository } from './storage/MemoryRepository';
 import { EmbeddingClient } from './embedding/EmbeddingClient';
 import { createMemoryRouter } from './api/memory.routes';
 import { logger } from './utils/logger';
+import { IngestionPipeline } from './core/IngestionPipeline';
+import { PromptInjector } from './core/PromptInjector';
+import { MemoryMiddleware } from './core/MemoryMiddleware';
+import { createBridgeRouter } from './api/bridge.routes';
 
 async function main() {
   const sqlite = new SqliteClient(config.SQLITE_PATH);
@@ -17,9 +21,14 @@ async function main() {
   const embedding = new EmbeddingClient(config.EMBED_URL, config.EMBED_MODEL, config.VECTOR_SIZE);
   const repo = new MemoryRepository(sqlite, vector, embedding);
 
+  const pipeline = new IngestionPipeline(repo);
+  const injector = new PromptInjector();
+  const middleware = new MemoryMiddleware(repo, injector, pipeline, config.MAX_MEMORY_TOKENS);
+
   const app = express();
   app.use(express.json());
   app.use('/', createMemoryRouter(repo));
+  app.use(createBridgeRouter(middleware));
 
   app.listen(config.PORT, () => {
     logger.info(`Server is running on port ${config.PORT}`);
