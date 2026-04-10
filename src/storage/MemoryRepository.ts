@@ -4,14 +4,17 @@ import { MemoryEntry, MemoryType, SaveMemoryRequest, SearchResult } from '../cor
 import { v4 as uuidv4 } from 'uuid';
 import { logger } from '../utils/logger';
 import { config } from '../config/config';
+import { EmbeddingClient } from '../embedding/EmbeddingClient';
 
 export class MemoryRepository {
   private sqlite: SqliteClient;
   private vector: VectorClient;
+  private embedding: EmbeddingClient;
 
-  constructor(sqlite: SqliteClient, vector: VectorClient) {
+  constructor(sqlite: SqliteClient, vector: VectorClient, embedding: EmbeddingClient) {
     this.sqlite = sqlite;
     this.vector = vector;
+    this.embedding = embedding;
   }
 
   async save(req: SaveMemoryRequest): Promise<MemoryEntry> {
@@ -52,8 +55,8 @@ export class MemoryRepository {
       updatedAt
     );
 
-    const zeroVector = new Array(config.VECTOR_SIZE).fill(0);
-    await this.vector.upsert(id, zeroVector, { content: req.content });
+    const embVector = await this.embedding.embed(req.content);
+    await this.vector.upsert(id, embVector, { content: req.content, type: String(req.type) });
 
     return memoryEntry;
   }
@@ -70,7 +73,7 @@ export class MemoryRepository {
     sql += ' LIMIT ?';
     params.push(limit);
 
-    const rows = this.sqlite.getDb().prepare(sql).all(...params);
+    const rows = this.sqlite.getDb().prepare(sql).all(...params) as any[];
 
     return rows.map(row => ({
       entry: {
