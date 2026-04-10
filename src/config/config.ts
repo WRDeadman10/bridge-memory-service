@@ -10,7 +10,10 @@ const configSchema = z.object({
   QDRANT_COLLECTION: z.string().default('memories'),
   VECTOR_SIZE: z.coerce.number().default(1536),
   EMBED_URL: z.string().default('http://localhost:11434/api/embeddings'),
-  EMBED_MODEL: z.string().default('nomic-embed-text')
+  EMBED_MODEL: z.string().default('nomic-embed-text'),
+  ENABLE_MEMORY: z.coerce.boolean().default(true),
+  MAX_MEMORY_TOKENS: z.coerce.number().default(800),
+  ENABLE_TOOL_TRACKING: z.coerce.boolean().default(true)
 });
 
 const config = configSchema.parse(process.env);
