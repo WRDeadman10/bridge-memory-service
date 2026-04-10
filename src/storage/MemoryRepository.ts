@@ -79,20 +79,36 @@ export class MemoryRepository {
 
     const rows = this.sqlite.getDb().prepare(sql).all(...params) as any[];
 
-    return rows.map(row => ({
-      entry: {
-        id: row.id,
-        type: row.type,
-        content: row.content,
-        summary: row.summary,
-        importanceScore: row.importance_score,
-        recencyScore: row.recency_score,
-        embeddingId: row.embedding_id,
-        tags: JSON.parse(row.tags),
-        createdAt: new Date(row.created_at),
-        updatedAt: new Date(row.updated_at)
-      },
-      score: vResults.find(v => v.id === row.id)?.score ?? 0
-    })).sort((a, b) => b.score - a.score);
+    return rows.map(row => {
+      // Calculate typePriority
+      let typePriority: number;
+      if (row.type === 0) {
+        typePriority = 1.0;
+      } else if (row.type === 1) {
+        typePriority = 0.7;
+      } else {
+        typePriority = 0.5;
+      }
+
+      // Calculate compositeScore
+      const semanticScore = vResults.find(v => v.id === row.id)?.score ?? 0;
+      const compositeScore = semanticScore * 0.4 + row.importance_score * 0.3 + row.recency_score * 0.2 + typePriority * 0.1;
+
+      return {
+        entry: {
+          id: row.id,
+          type: row.type,
+          content: row.content,
+          summary: row.summary,
+          importanceScore: row.importance_score,
+          recencyScore: row.recency_score,
+          embeddingId: row.embedding_id,
+          tags: JSON.parse(row.tags),
+          createdAt: new Date(row.created_at),
+          updatedAt: new Date(row.updated_at)
+        },
+        score: compositeScore
+      };
+    }).sort((a, b) => b.score - a.score);
   }
 }
