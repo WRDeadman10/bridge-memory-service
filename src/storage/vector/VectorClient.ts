@@ -15,8 +15,7 @@ export class VectorClient {
   async ensureCollection(): Promise<void> {
     const collections = await this.client.getCollections();
     if (!collections.collections.some(c => c.name === this.collectionName)) {
-      await this.client.createCollection({
-        name: this.collectionName,
+      await this.client.createCollection(this.collectionName, {
         vectors: {
           size: this.vectorSize,
           distance: 'Cosine'
@@ -29,8 +28,7 @@ export class VectorClient {
   }
 
   async upsert(id: string, vector: number[], payload: Record<string, unknown>): Promise<void> {
-    await this.client.upsert({
-      collection_name: this.collectionName,
+    await this.client.upsert(this.collectionName, {
       points: [
         {
           id: id,
@@ -43,8 +41,7 @@ export class VectorClient {
   }
 
   async search(vector: number[], limit: number): Promise<Array<{ id: string, score: number, payload: Record<string, unknown> }>> {
-    const result = await this.client.search({
-      collection_name: this.collectionName,
+    const result = await this.client.search(this.collectionName, {
       vector,
       limit
     });
@@ -52,7 +49,7 @@ export class VectorClient {
     return result.map(item => ({
       id: item.id.toString(),
       score: item.score,
-      payload: item.payload
+      payload: (item.payload ?? {}) as Record<string, unknown>
     }));
   }
 }
