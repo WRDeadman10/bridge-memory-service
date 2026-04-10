@@ -49,7 +49,7 @@ export function createMemoryRouter(repo: MemoryRepository): Router {
         type: type as MemoryType | undefined
       };
 
-      const results = await repo.search(searchRequest.query, searchRequest.limit, searchRequest.type);
+      const results = await repo.search(searchRequest.query, searchRequest.limit || 10, searchRequest.type);
       res.status(200).json(results);
       metrics.increment('searches');
     } catch (error) {
