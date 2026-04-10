@@ -9,6 +9,8 @@ import { logger } from './utils/logger';
 import { IngestionPipeline } from './core/IngestionPipeline';
 import { PromptInjector } from './core/PromptInjector';
 import { MemoryMiddleware } from './core/MemoryMiddleware';
+import { TokenController } from './core/TokenController';
+import { QueryUnderstanding } from './core/QueryUnderstanding';
 import { createBridgeRouter } from './api/bridge.routes';
 
 async function main() {
@@ -23,7 +25,9 @@ async function main() {
 
   const pipeline = new IngestionPipeline(repo);
   const injector = new PromptInjector();
-  const middleware = new MemoryMiddleware(repo, injector, pipeline, config.MAX_MEMORY_TOKENS);
+  const tokenController = new TokenController();
+  const queryUnderstanding = new QueryUnderstanding();
+  const middleware = new MemoryMiddleware(repo, injector, pipeline, config.MAX_MEMORY_TOKENS, tokenController, queryUnderstanding);
 
   const app = express();
   app.use(express.json());
