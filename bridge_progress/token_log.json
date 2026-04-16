@@ -1,6 +1,66 @@
 {
   "sessions": [
     {
+      "session_id": "6c3ff21b-de38-42c5-8349-5c1a812c3baa",
+      "timestamp": "2026-04-10T17:34:50",
+      "goal": "Fix TS2345 in memory.routes.ts",
+      "repo_root": "H:\\Ai_Project\\memory\\bridge-memory-service",
+      "supervisor_command": "manual",
+      "supervisor": {
+        "plan_in": 0,
+        "plan_out": 0,
+        "review_in": 0,
+        "review_out": 0,
+        "subplan_in": 0,
+        "subplan_out": 0,
+        "total_in": 0,
+        "total_out": 0,
+        "total": 0
+      },
+      "session": {
+        "tokens": 6118,
+        "is_estimate": true,
+        "total_ai_tokens": 6118
+      },
+      "aider": {
+        "tasks_executed": 1,
+        "tasks_skipped": 0,
+        "reworks": 0,
+        "subplans_generated": 0,
+        "estimated_tokens": 830,
+        "per_task": [
+          {
+            "task_id": 1,
+            "estimated_tokens": 830,
+            "performer": "ollama"
+          }
+        ]
+      },
+      "productivity": {
+        "is_productive": true,
+        "waste_reason": null
+      },
+      "savings": {
+        "estimated_direct_tokens": 11118,
+        "actual_supervisor_tokens": 0,
+        "total_ai_tokens": 6118,
+        "tokens_saved": 5000,
+        "savings_percent": 45.0,
+        "note": "Without bridge: plan (0 tokens) + 1 tasks x 5000 direct-coding tokens = 11118; with bridge: supervisor 6118 tokens (cloud) + Aider ~830 tokens (local/free); cloud AI saved: 5000"
+      },
+      "cost": {
+        "bridge_cost_opus": 0.0,
+        "bridge_cost_sonnet": 0.0,
+        "direct_cost_opus": 0.4336,
+        "direct_cost_sonnet": 0.0867,
+        "ollama_cost": 0.0,
+        "ollama_tokens": 830,
+        "savings_dollar_opus": 0.0,
+        "savings_dollar_sonnet": 0.0
+      },
+      "elapsed_seconds": 132.4
+    },
+    {
       "session_id": "b244fd0f-5013-4665-94f7-eb2b7c1fb8ea",
       "timestamp": "2026-04-10T15:23:35",
       "goal": "Build a logging system feature",
@@ -918,16 +978,16 @@
     }
   ],
   "totals": {
-    "sessions_count": 11,
-    "tasks_executed_total": 56,
+    "sessions_count": 12,
+    "tasks_executed_total": 57,
     "supervisor_tokens_total": 0,
-    "session_tokens_total": 104141,
-    "total_ai_tokens_total": 104141,
-    "aider_tokens_total": 60114,
-    "tokens_saved_total": 280000,
-    "savings_percent_weighted": 72.9,
-    "savings_percent_successful_avg": 76.6,
-    "savings_percent_avg": 76.6,
+    "session_tokens_total": 110259,
+    "total_ai_tokens_total": 110259,
+    "aider_tokens_total": 60944,
+    "tokens_saved_total": 285000,
+    "savings_percent_weighted": 72.1,
+    "savings_percent_successful_avg": 73.1,
+    "savings_percent_avg": 73.1,
     "wasted_tokens_total": 33455,
     "wasted_sessions_count": 3,
     "waste_reason_counts": {
@@ -936,12 +996,12 @@
     "cost_total": {
       "bridge_opus": 0.0,
       "bridge_sonnet": 0.0,
-      "direct_opus": 14.9814,
-      "direct_sonnet": 2.9962,
+      "direct_opus": 15.415,
+      "direct_sonnet": 3.0829,
       "ollama": 0.0,
-      "savings_opus": 14.9814,
-      "savings_sonnet": 2.9962
+      "savings_opus": 15.415,
+      "savings_sonnet": 3.0829
     },
-    "last_updated": "2026-04-10T15:23:35"
+    "last_updated": "2026-04-10T17:34:50"
   }
 }

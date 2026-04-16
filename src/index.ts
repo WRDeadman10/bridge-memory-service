@@ -17,8 +17,21 @@ async function main() {
   const sqlite = new SqliteClient(config.SQLITE_PATH);
   await sqlite.init();
 
-  const vector = new VectorClient(config.QDRANT_URL, config.QDRANT_COLLECTION, config.VECTOR_SIZE);
-  await vector.ensureCollection();
+  // Qdrant is optional — if it's not running the service falls back to SQLite-only mode.
+  // Set ENABLE_VECTOR=false in .env (or leave Qdrant offline) to skip vector search entirely.
+  let vector: VectorClient | null = null;
+  if (process.env.ENABLE_VECTOR !== 'false') {
+    try {
+      vector = new VectorClient(config.QDRANT_URL, config.QDRANT_COLLECTION, config.VECTOR_SIZE);
+      await vector.ensureCollection();
+      logger.info('Qdrant vector store connected.');
+    } catch (err) {
+      logger.warn(`Qdrant unavailable (${err}). Running in SQLite-only mode — semantic search disabled.`);
+      vector = null;
+    }
+  } else {
+    logger.info('Vector search disabled via ENABLE_VECTOR=false. Running in SQLite-only mode.');
+  }
 
   const embedding = new EmbeddingClient(config.EMBED_URL, config.EMBED_MODEL, config.VECTOR_SIZE);
   const repo = new MemoryRepository(sqlite, vector, embedding);

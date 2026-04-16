@@ -8,10 +8,10 @@ import { EmbeddingClient } from '../embedding/EmbeddingClient';
 
 export class MemoryRepository {
   private sqlite: SqliteClient;
-  private vector: VectorClient;
+  private vector: VectorClient | null;
   private embedding: EmbeddingClient;
 
-  constructor(sqlite: SqliteClient, vector: VectorClient, embedding: EmbeddingClient) {
+  constructor(sqlite: SqliteClient, vector: VectorClient | null, embedding: EmbeddingClient) {
     this.sqlite = sqlite;
     this.vector = vector;
     this.embedding = embedding;
@@ -38,73 +38,85 @@ export class MemoryRepository {
       updatedAt: new Date(updatedAt)
     };
 
-    // Compute embedding vector
-    const embVector = await this.embedding.embed(req.content);
-
-    // Check for near-duplicates
-    const dupCheck = await this.vector.search(embVector, 1);
-
-    if (dupCheck.length > 0 && dupCheck[0].score > 0.9) {
-      logger.warn('Near-duplicate memory detected skipping save');
-      return memoryEntry;
+    if (this.vector) {
+      // Compute embedding vector and check for near-duplicates (vector mode)
+      try {
+        const embVector = await this.embedding.embed(req.content);
+        const dupCheck = await this.vector.search(embVector, 1);
+        if (dupCheck.length > 0 && dupCheck[0].score > 0.9) {
+          logger.warn('Near-duplicate memory detected, skipping save');
+          return memoryEntry;
+        }
+        // Save to SQLite + vector store
+        this.sqlite.getDb().prepare(`
+          INSERT INTO memory_entries (
+            id, type, content, summary, importance_score, recency_score, embedding_id, tags, created_at, updated_at
+          ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        `).run(id, req.type, req.content, req.summary, importanceScore, recencyScore, null, tagsJson, createdAt, updatedAt);
+        await this.vector.upsert(id, embVector, { content: req.content, type: String(req.type) });
+      } catch (err) {
+        logger.warn(`Vector operation failed (${err}), saving to SQLite only.`);
+        this.sqlite.getDb().prepare(`
+          INSERT OR IGNORE INTO memory_entries (
+            id, type, content, summary, importance_score, recency_score, embedding_id, tags, created_at, updated_at
+          ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        `).run(id, req.type, req.content, req.summary, importanceScore, recencyScore, null, tagsJson, createdAt, updatedAt);
+      }
+    } else {
+      // SQLite-only mode: simple duplicate check by content
+      const existing = this.sqlite.getDb().prepare(
+        'SELECT id FROM memory_entries WHERE content = ? LIMIT 1'
+      ).get(req.content);
+      if (existing) {
+        logger.warn('Duplicate memory content detected (SQLite-only mode), skipping save');
+        return memoryEntry;
+      }
+      this.sqlite.getDb().prepare(`
+        INSERT INTO memory_entries (
+          id, type, content, summary, importance_score, recency_score, embedding_id, tags, created_at, updated_at
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+      `).run(id, req.type, req.content, req.summary, importanceScore, recencyScore, null, tagsJson, createdAt, updatedAt);
     }
-
-    // Proceed with saving
-    this.sqlite.getDb().prepare(`
-      INSERT INTO memory_entries (
-        id, type, content, summary, importance_score, recency_score, embedding_id, tags, created_at, updated_at
-      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-    `).run(
-      id,
-      req.type,
-      req.content,
-      req.summary,
-      importanceScore,
-      recencyScore,
-      null,
-      tagsJson,
-      createdAt,
-      updatedAt
-    );
-
-    await this.vector.upsert(id, embVector, { content: req.content, type: String(req.type) });
 
     return memoryEntry;
   }
 
   async search(query: string, limit: number, type?: MemoryType): Promise<SearchResult[]> {
-    const qVec = await this.embedding.embed(query);
-    const vResults = await this.vector.search(qVec, limit);
-
-    if (vResults.length === 0) return [];
-
-    const ids = vResults.map(r => r.id);
-    const placeholders = ids.map(() => '?').join(',');
-    let sql = 'SELECT * FROM memory_entries WHERE id IN (' + placeholders + ')';
-    const params: any[] = [...ids];
-
-    if (type !== undefined) {
-      sql += ' AND type = ?';
-      params.push(type);
+    if (this.vector) {
+      // Vector similarity search (full mode)
+      try {
+        const qVec = await this.embedding.embed(query);
+        const vResults = await this.vector.search(qVec, limit);
+        if (vResults.length === 0) return [];
+        const ids = vResults.map(r => r.id);
+        const placeholders = ids.map(() => '?').join(',');
+        let sql = 'SELECT * FROM memory_entries WHERE id IN (' + placeholders + ')';
+        const params: any[] = [...ids];
+        if (type !== undefined) { sql += ' AND type = ?'; params.push(type); }
+        const rows = this.sqlite.getDb().prepare(sql).all(...params) as any[];
+        return rows.map(row => {
+          let typePriority = row.type === 0 ? 1.0 : row.type === 1 ? 0.7 : 0.5;
+          const semanticScore = vResults.find(v => v.id === row.id)?.score ?? 0;
+          const compositeScore = semanticScore * 0.4 + row.importance_score * 0.3 + row.recency_score * 0.2 + typePriority * 0.1;
+          return { entry: { id: row.id, type: row.type, content: row.content, summary: row.summary, importanceScore: row.importance_score, recencyScore: row.recency_score, embeddingId: row.embedding_id, tags: JSON.parse(row.tags), createdAt: new Date(row.created_at), updatedAt: new Date(row.updated_at) }, score: compositeScore };
+        }).sort((a, b) => b.score - a.score);
+      } catch (err) {
+        logger.warn(`Vector search failed (${err}), falling back to SQLite keyword search.`);
+      }
     }
 
+    // SQLite-only keyword fallback: LIKE search on content
+    const keyword = `%${query}%`;
+    let sql = 'SELECT * FROM memory_entries WHERE content LIKE ?';
+    const params: any[] = [keyword];
+    if (type !== undefined) { sql += ' AND type = ?'; params.push(type); }
+    sql += ` ORDER BY importance_score DESC LIMIT ${limit}`;
     const rows = this.sqlite.getDb().prepare(sql).all(...params) as any[];
 
     return rows.map(row => {
-      // Calculate typePriority
-      let typePriority: number;
-      if (row.type === 0) {
-        typePriority = 1.0;
-      } else if (row.type === 1) {
-        typePriority = 0.7;
-      } else {
-        typePriority = 0.5;
-      }
-
-      // Calculate compositeScore
-      const semanticScore = vResults.find(v => v.id === row.id)?.score ?? 0;
-      const compositeScore = semanticScore * 0.4 + row.importance_score * 0.3 + row.recency_score * 0.2 + typePriority * 0.1;
-
+      const typePriority = row.type === 0 ? 1.0 : row.type === 1 ? 0.7 : 0.5;
+      // No semantic score in SQLite-only mode — rank by importance + recency + type
+      const score = row.importance_score * 0.5 + row.recency_score * 0.3 + typePriority * 0.2;
       return {
         entry: {
           id: row.id,
@@ -118,7 +130,7 @@ export class MemoryRepository {
           createdAt: new Date(row.created_at),
           updatedAt: new Date(row.updated_at)
         },
-        score: compositeScore
+        score
       };
     }).sort((a, b) => b.score - a.score);
   }

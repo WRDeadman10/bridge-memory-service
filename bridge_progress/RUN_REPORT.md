@@ -1,17 +1,17 @@
 # Bridge Run Report
 
-> Generated: 2026-04-10T15:23:35
+> Generated: 2026-04-10T17:34:50
 
 ## Run Summary
 
 | Field | Value |
 |---|---|
-| Goal | Build a logging system feature |
+| Goal | Fix TS2345 in memory.routes.ts |
 | Supervisor | manual |
-| Tasks executed | 8 |
+| Tasks executed | 1 |
 | Tasks skipped | 0 |
 | Reworks | 0 |
-| Duration | 781.9s |
+| Duration | 132.4s |
 
 ## Token Breakdown
 
@@ -20,39 +20,32 @@
 | Supervisor: Plan | 0 | 0 | 0 |
 | Supervisor: Review | 0 | 0 | 0 |
 | **Supervisor Total** | 0 | 0 | **0** |
-| Session overhead | — | — | 7,764 (est.) |
-| **Aider (local LLM)** | — | — | **~6,997** (estimated) |
-| **Total AI (cloud)** | — | — | **7,764** |
+| Session overhead | — | — | 6,118 (est.) |
+| **Aider (local LLM)** | — | — | **~830** (estimated) |
+| **Total AI (cloud)** | — | — | **6,118** |
 
 ## Savings Comparison
 
 ```
 WITHOUT BRIDGE (all cloud AI):
   Planning:            0 tokens
-  Coding:         40,000 tokens  (8 tasks x 5,000)
-  TOTAL:          47,764 tokens
+  Coding:          5,000 tokens  (1 tasks x 5,000)
+  TOTAL:          11,118 tokens
 
 WITH BRIDGE:
-  Supervisor:      7,764 tokens  (cloud — costs money)
-  Aider:       ~   6,997 tokens  (local LLM — free)
-  TOTAL:          14,761 tokens  (only 7,764 charged)
+  Supervisor:      6,118 tokens  (cloud — costs money)
+  Aider:       ~     830 tokens  (local LLM — free)
+  TOTAL:           6,948 tokens  (only 6,118 charged)
 
-CLOUD AI SAVED:   40,000 tokens  (83.7%)
+CLOUD AI SAVED:    5,000 tokens  (45.0%)
 ```
 
 ## Per-Task Token Usage (Aider)
 
 | Task | Estimated Tokens |
 |---|---|
-| Task 1 | ~826 |
-| Task 2 | ~1,241 |
-| Task 3 | ~804 |
-| Task 4 | ~1,217 |
-| Task 5 | ~354 |
-| Task 6 | ~1,168 |
-| Task 7 | ~613 |
-| Task 8 | ~774 |
-| **Total** | **~6,997** |
+| Task 1 | ~830 |
+| **Total** | **~830** |
 
 ---
 
